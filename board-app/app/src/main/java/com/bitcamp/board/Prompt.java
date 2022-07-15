@@ -13,12 +13,18 @@ public class Prompt {
     String str = keyboardInput.nextLine();
     return Integer.parseInt(str); // "123" ==> 123, "5" ==> 5
   }
-  
+
   static int inputInt(String title) {
     System.out.print(title);
     String str = keyboardInput.nextLine();
-    return Integer.parseInt(str); // "123" ==> 123, "5" ==> 5
+    return Integer.parseInt(str);
   }
+
+  //
+  //  static int inputInt(String title) {
+  //    System.out.print(title);
+  //    return keyboardInput.nextInt();
+  //  }
 
   static String inputString() {
     return keyboardInput.nextLine();
