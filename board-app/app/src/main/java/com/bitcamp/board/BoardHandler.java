@@ -138,14 +138,25 @@ public class BoardHandler {
       }
     }
 
-    if ( == boardNo)
+    if (board == null) {
+      System.out.println("해당 번호의 게시글이 없습니다!");
+      return;
+    }
 
-      if (board == null) {
-        System.out.println("해당 번호의 게시글이 없습니다!");
-        return;
-      }
-    //      String newTitle = Prompt.inputString("제목?("+board.title+")")
-    //          String newContent = Prompt.inputString()
-    //}
+    String newTitle = Prompt.inputString("제목?("+board.title+")");
+    String newContent = Prompt.inputString("내용?("+board.content+")");
+
+    String update = Prompt.inputString("변경하시겠습니까(y/n)");
+
+    if (update.equals("y")) {
+      board.title = newTitle;
+      board.content = newContent;
+      System.out.println("변경했습니다.");
+
+    } else {
+      System.out.println("변경 취소했습니다.");
+
+    }
+
   }
 }
