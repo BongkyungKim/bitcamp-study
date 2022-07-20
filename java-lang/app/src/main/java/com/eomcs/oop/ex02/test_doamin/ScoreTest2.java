@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex02.testDomain;
+package com.eomcs.oop.ex02.test_doamin;
 
 public class ScoreTest2 {
 

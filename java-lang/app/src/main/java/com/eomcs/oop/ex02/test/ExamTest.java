@@ -1,6 +1,6 @@
 package com.eomcs.oop.ex02.test;
 
-import com.eomcs.oop.ex02.testDomain.ScoreTest2;
+import com.eomcs.oop.ex02.test_doamin.ScoreTest2;
 
 public class ExamTest {
 
