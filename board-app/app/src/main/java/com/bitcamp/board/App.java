@@ -9,7 +9,6 @@ import com.bitcamp.board.handler.MemberHandler;
 import com.bitcamp.util.Prompt;
 
 public class App {
-
   public static void main(String[] args) {
     welcome();
 

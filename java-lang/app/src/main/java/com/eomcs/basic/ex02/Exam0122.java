@@ -24,6 +24,9 @@ public class Exam0122 {
     // Member는 Object에서 상속 받은 equals()를 오버라이딩 하지 않았다.
     // 따라서 단순히 인스턴스가 같은지를 비교할 것이다.
     System.out.println(m1.equals(m2)); // false
+
+    System.out.println(m1.toString());
+    System.out.println(m2.toString());
   }
 }
 
