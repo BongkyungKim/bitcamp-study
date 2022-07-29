@@ -1,4 +1,4 @@
-// 예외 처리 - 예외에 대해 의미를 부여하기 - 사용자 정의 예외 만들고 사용하기
+// 예외 처리 - 2) 예외에 대해 의미를 부여하기 - 사용자 정의 예외 만들고 사용하기
 package com.eomcs.exception.ex5;
 
 import java.sql.Date;
@@ -28,7 +28,7 @@ public class Exam0130 {
       return board;
     } catch (Exception 원본오류) {
       // 예외가 발생되면 원본 예외를 그대로 던지지 말고,
-      // 예외를 직관적으로 알아볼 수 있는 예외 객체를 던진다.
+      // 예외의 의미를 직관적으로 파악할 수 있도록 별도의 있는 예외 객체어 던진다.
       // 즉 게시물 관리 작업을 하다가 오류가 발생했음을
       // 직관적으로 알게 한다.
       // 어떤 방법?
@@ -40,12 +40,22 @@ public class Exam0130 {
   }
 
   public static void main(String[] args) {
-    Board board = read();
-    System.out.println("---------------------");
-    System.out.printf("번호: %d\n", board.getNo());
-    System.out.printf("제목: %s\n", board.getTitle());
-    System.out.printf("내용: %s\n", board.getContent());
-    System.out.printf("등록일: %s\n", board.getCreatedDate());
+    try {
+      Board board = read();
+      // read() 메서드의 선언부를 보면 BoardException 던진다고 되어 있다.
+      System.out.println("---------------------");
+      System.out.printf("번호: %d\n", board.getNo());
+      System.out.printf("제목: %s\n", board.getTitle());
+      System.out.printf("내용: %s\n", board.getContent());
+      System.out.printf("등록일: %s\n", board.getCreatedDate());
+
+    } catch (BoardException ex) {
+      ex.printStackTrace();
+      // 예외 내용이 출력된 것을 보면,
+      // BoardException 클래스 이름이 나온다.
+      // 자세한 내용을 파악하기 전에
+      // 대략적으로 어떤 작업을 하다가 오류가 발생했는지 빠르게 파악할 수 있어 좋다.
+    }
   }
 }
 
