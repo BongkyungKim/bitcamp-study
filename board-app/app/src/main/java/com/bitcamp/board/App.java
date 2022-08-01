@@ -9,6 +9,7 @@ import com.bitcamp.board.handler.MemberHandler;
 import com.bitcamp.util.Prompt;
 
 public class App {
+
   public static void main(String[] args) {
     welcome();
 
@@ -62,6 +63,7 @@ public class App {
       } catch (Exception ex) {
         System.out.println("입력 값이 옳지 않습니다.");
       }
+
 
     } // while
 
