@@ -2,11 +2,11 @@ package com.bitcamp.util;
 
 public class Stack extends LinkedList {
 
-  // 비록 push()나 pop() 메서드는
-  // LinkedList의 메서드를 호출하는 껍데기에 불과하지만
-  // 스택이라는 개념을 명확하게 표현할 수 있어서
+  // 비록 push()나 pop() 메서드는 
+  // LinkedList의 메서드를 호출하는 껍데기 불과하지만 
+  // 스택이라는 개념을 명확하게 표현할 수 있어서 
   // 이렇게 별도의 메서드로 구현하는 것이다.
-  // 
+  //
 
   // 스택의 맨 마지막에 값을 추가한다.
   public void push(Object value) {
@@ -19,11 +19,11 @@ public class Stack extends LinkedList {
   }
 
   //스택이 비어 있는지 여부를 알려준다.
-  public boolean empty() {
+  public boolean empty() { 
     return size() == 0;
   }
 
-  // 스택에 저장된 맨 마지막 값을 리턴한다. 제거하지 않는다.
+  //스택에 맨 마지막에 저장된 값을 리턴한다. 제거하지 않는다.
   public Object peek() { 
     return get(size() - 1);
   }
@@ -43,3 +43,8 @@ public class Stack extends LinkedList {
     return buf.toString();
   }
 }
+
+
+
+
+

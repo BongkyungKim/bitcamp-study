@@ -28,7 +28,6 @@ public class App {
         new MemberHandler() // 회원
     };
 
-
     // "메인" 메뉴의 이름을 스택에 등록한다.
     breadcrumbMenu.push("메인");
 
@@ -66,6 +65,7 @@ public class App {
       } catch (Exception ex) {
         System.out.println("입력 값이 옳지 않습니다.");
       }
+
 
     } // while
 
