@@ -1,4 +1,4 @@
-package com.eomcs.quiz.ex01;
+package com.eomcs.quiz.ex01.sol;
 // copyright by codefights.com
 // 
 // 양의 정수가 주어질 때 가장 큰 숫자를 찾아라!
@@ -17,9 +17,9 @@ largest digit of n
  */
 //
 // [시간 복잡도]
-// - ?
+// - O(10) = O(1) : int 값 최대 자릿수이다.  
 //
-public class Test20 {
+public class Test20x {
 
   public static void main(String[] args) {
     System.out.println(maxDigit(736) == 7);
@@ -27,7 +27,13 @@ public class Test20 {
   }
 
   static int maxDigit(int n) {
-    // 이 메서드를 완성하시오!
-    return 0;
+    int result = 0;
+    while (n > 0) {
+      if ((n % 10) > result) {
+        result = n % 10;
+      }
+      n /= 10;
+    }
+    return result;
   }
 }
