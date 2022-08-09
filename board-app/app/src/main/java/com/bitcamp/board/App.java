@@ -37,11 +37,8 @@ public class App {
 
       loop: while (true) {
 
-        // 메인 메뉴 출력
-        System.out.printf("%s:\n", breadcrumbMenu);
-
+        printTitle();
         printMenus(menus);
-
         System.out.println();
 
         try {
@@ -66,6 +63,7 @@ public class App {
         } catch (Exception ex) {
           System.out.println("입력 값이 옳지 않습니다.");
         }
+
 
       } // while
 
@@ -96,6 +94,17 @@ public class App {
     for (int i = 0; i < menus.length; i++) {
       System.out.printf("  %d: %s\n", i + 1, menus[i]);
     }
+  }
+
+  protected static void printTitle() {
+    StringBuilder builder = new StringBuilder();
+    for (String title : App.breadcrumbMenu) {
+      if (!builder.isEmpty()) {
+        builder.append(" > ");
+      }
+      builder.append(title);
+    }
+    System.out.printf("%s:\n", builder.toString());
   }
 }
 

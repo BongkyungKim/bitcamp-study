@@ -14,7 +14,7 @@ public class Board {
   public String toString() {
     return "Board [no=" + no + ", title=" + title + ", content=" + content + ", writer=" + writer
         + ", password=" + password + ", viewCount=" + viewCount 
-        + ", createdDate=" + new java.sql.Date(createdDate)
+        + ", createdDate=" + new java.sql.Date(createdDate) 
         + "]";
   }
 }
