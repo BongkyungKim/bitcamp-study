@@ -13,14 +13,15 @@ public class Exam0212 {
     boolean bool = obj3.booleanValue();
 
     // 문자열로 꺼내기
+    // Wrapper 클래스도 String 클래스처럼 Object의 toString()을 오버라이딩 했다.
     String s1 = obj1.toString(); // Object의 toString()이 아니다. Long에서 오버라이딩한 toString()이다.
     String s2 = obj2.toString(); // Object의 toString()이 아니다. Double에서 오버라이딩한 toString()이다.
     String s3 = obj3.toString(); // Object의 toString()이 아니다. Boolean에서 오버라이딩한 toString()이다.
 
     // 다른 진수로 변환하여 문자열로 꺼내기
-    System.out.println(Integer.toHexString(i));
-    System.out.println(Integer.toOctalString(i));
-    System.out.println(Integer.toBinaryString(i));
+    System.out.println(Long.toHexString(l));
+    System.out.println(Long.toOctalString(l));
+    System.out.println(Long.toBinaryString(l));
   }
 }
 
