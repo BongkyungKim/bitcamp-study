@@ -31,13 +31,6 @@ public class Test10 {
 
   static boolean isLuckyNumber(int n) {
     // 이 메서드를 완성하시오!
-    while (n > 0) {
-      int temp = n % 10;
-      if (temp != 4 && temp != 7) {
-        return false;
-      }
-      n /= 10;
-    }
     return true;
   }
 
