@@ -18,7 +18,7 @@ public class BoardServlet implements Servlet {
 
   public BoardServlet(String dataName) {
     filename = dataName + ".json";
-    boardDao = new BoardDao(dataName + ".json");
+    boardDao = new BoardDao(filename);
 
     try {
       boardDao.load();
@@ -60,7 +60,7 @@ public class BoardServlet implements Servlet {
           boardDao.save();
           out.writeUTF(SUCCESS);
           break;
-        case "update":
+        case "update": 
           json = in.readUTF();
           board = new Gson().fromJson(json, Board.class);
           if (boardDao.update(board)) {
@@ -71,7 +71,7 @@ public class BoardServlet implements Servlet {
           }
           break;
         case "delete": 
-          no = in.readInt(); 
+          no = in.readInt();
           if (boardDao.delete(no)) {
             boardDao.save();
             out.writeUTF(SUCCESS);

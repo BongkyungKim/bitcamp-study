@@ -95,7 +95,7 @@ public class MemberHandler extends AbstractHandler {
     out.writeUTF(json);
 
     if (in.readUTF().equals("success")) {
-      System.out.println("회워을 등록했습니다.");
+      System.out.println("회원을 등록했습니다.");
     } else {
       System.out.println("회원 등록에 실패했습니다!");
     }

@@ -22,27 +22,29 @@ public class MemberDao {
 
   public void load() throws Exception {
     try (BufferedReader in = new BufferedReader(new FileReader(filename))) {
+
+      // 파일에서 JSON 문자열을 모두 읽어 StringBuilder에 담는다.
       StringBuilder strBuilder = new StringBuilder();
       String str;
       while ((str = in.readLine()) != null) {
-        strBuilder.append(str);  
+        strBuilder.append(str);
       }
 
-      // StringBuilder에 보관된 JSON 문자열을 가지고 Member[] 을 생성한다.
+      // StringBuilder에 보관된 JSON 문자열을 가지고 Member[] 을 생성한다. 
       Member[] arr = new Gson().fromJson(strBuilder.toString(), Member[].class);
 
-      // Member[] 배열에 저장된 객체를 List 로 옮긴다.
+      // Member[] 배열의 저장된 객체를 List 로 옮긴다.
       for (int i = 0; i < arr.length; i++) {
         list.add(arr[i]);
       }
-    } // try () ==> try 블록을 벗어나기 전에 in.close()가 자동으로 실행된다.
+    }
   }
 
   public void save() throws Exception {
     try (FileWriter out = new FileWriter(filename)) {
       Member[] members = list.toArray(new Member[0]);
       out.write(new Gson().toJson(members));
-    } // try () ==> try 블록을 벗어나기 전에 out.close()가 자동으로 실행된다.
+    }
   }
 
   public void insert(Member member) {
@@ -57,6 +59,17 @@ public class MemberDao {
       }
     }
     return null;
+  }
+
+  public boolean update(Member member) {
+    for (int i = 0; i < list.size(); i++) {
+      Member m = list.get(i);
+      if (m.email.equals(member.email)) {
+        list.set(i, member);
+        return true;
+      }
+    }
+    return false;
   }
 
   public boolean delete(String email) {
