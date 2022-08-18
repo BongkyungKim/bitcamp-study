@@ -29,7 +29,6 @@ public class Exam0320 {
     // 따라서 Iterator를 생성한 후에 목록을 변경하면,
     // 기존 목록에서 뽑은 Iterator는 무효한 객체가 된다.
 
-    map.put("s06", new Member("김구", 50));
     map.remove("s01");
 
     // 해결책?

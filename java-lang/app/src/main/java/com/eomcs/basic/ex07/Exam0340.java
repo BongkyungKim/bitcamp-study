@@ -37,6 +37,8 @@ public class Exam0340 {
       Member other = (Member) obj;
       return age == other.age && Objects.equals(name, other.name);
     }
+
+
   }
 
   public static void main(String[] args) {
