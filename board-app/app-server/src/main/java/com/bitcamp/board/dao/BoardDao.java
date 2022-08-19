@@ -28,13 +28,13 @@ public class BoardDao {
       StringBuilder strBuilder = new StringBuilder();
       String str;
       while ((str = in.readLine()) != null) {
-        strBuilder.append(str);  
+        strBuilder.append(str);
       }
 
-      // StringBuilder에 보관된 JSON 문자열을 가지고 Board[] 을 생성한다.
+      // StringBuilder에 보관된 JSON 문자열을 가지고 Board[] 을 생성한다. 
       Board[] arr = new Gson().fromJson(strBuilder.toString(), Board[].class);
 
-      // Board[] 배열에 저장된 객체를 List 로 옮긴다.
+      // Board[] 배열의 저장된 객체를 List 로 옮긴다.
       for (int i = 0; i < arr.length; i++) {
         list.add(arr[i]);
       }

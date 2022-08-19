@@ -32,7 +32,7 @@ public class MemberServlet implements Servlet {
     try {
 
       String command = in.readUTF();
-      Member member = null;
+      com.bitcamp.board.domain.Member member = null;
       String email = null;
       String json = null;
 
@@ -59,7 +59,7 @@ public class MemberServlet implements Servlet {
           memberDao.save();
           out.writeUTF(SUCCESS);
           break;
-        case "update":
+        case "update": 
           json = in.readUTF();
           member = new Gson().fromJson(json, Member.class);
           if (memberDao.update(member)) {
@@ -70,7 +70,7 @@ public class MemberServlet implements Servlet {
           }
           break;
         case "delete": 
-          email = in.readUTF(); 
+          email = in.readUTF();
           if (memberDao.delete(email)) {
             memberDao.save();
             out.writeUTF(SUCCESS);

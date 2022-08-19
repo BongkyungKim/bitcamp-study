@@ -13,10 +13,7 @@ public class ServerApp {
   public static void main(String[] args) {
     System.out.println("[게시글 데이터 관리 서버]");
 
-    try (
-        // 네트워크 준비
-        // => 클라이언트 연결을 관리할 객체를 준비한다.
-        ServerSocket serverSocket = new ServerSocket(8888);) {
+    try (ServerSocket serverSocket = new ServerSocket(8888);) {
 
       System.out.println("서버 소켓 준비 완료!");
 
@@ -30,28 +27,24 @@ public class ServerApp {
       servletMap.put("member", new MemberServlet("member"));
 
       while (true) {
-        try (
-            Socket socket = serverSocket.accept();
+        try (Socket socket = serverSocket.accept();
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
 
           System.out.println("클라이언트와 연결 되었음!");
 
+          // 클라이언트와 서버 사이에 정해진 규칙(protocol)에 따라 데이터를 주고 받는다.
+          String dataName = in.readUTF();
 
-          while (true) {
-            // 클라이언트와 서버 사이에 정해진 규칙(protocol)에 따라 데이터를 주고 받는다.
-            String dataName = in.readUTF();
+          if (dataName.equals("exit")) {
+            break;
+          }
 
-            if (dataName.equals("exit")) {
-              break;
-            }
-
-            Servlet servlet = servletMap.get(dataName);
-            if (servlet != null) {
-              servlet.service(in, out);
-            } else {
-              out.writeUTF("fail");
-            }
+          Servlet servlet = servletMap.get(dataName);
+          if (servlet != null) {
+            servlet.service(in, out);
+          } else {
+            out.writeUTF("fail");
           }
 
           System.out.println("클라이언트와 연결을 끊었음!");
@@ -59,11 +52,8 @@ public class ServerApp {
       }
     } catch (Exception e) {
       e.printStackTrace();
-    } // 바깥 쪽 try
+    } // 바깥 쪽 try 
 
     System.out.println("서버 종료!");
   }
 }
-
-
-
