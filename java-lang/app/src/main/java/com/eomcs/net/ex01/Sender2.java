@@ -12,13 +12,13 @@ public class Sender2 {
 
     Scanner keyScan = new Scanner(System.in);
 
-    Socket socket = new Socket("192.168.0.250", 8888);
+    Socket socket = new Socket("192.168.0.33", 8888);
 
     PrintStream out = new PrintStream(socket.getOutputStream());
     Scanner in = new Scanner(socket.getInputStream());
 
     // 키보드 입력을 받아서 서버에게 전송한다.
-    System.out.print("입력> ");
+    System.out.print("S입력> ");
     String input = keyScan.nextLine();
     out.println(input);
 

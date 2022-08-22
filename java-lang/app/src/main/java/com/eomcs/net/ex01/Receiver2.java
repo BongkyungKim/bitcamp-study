@@ -24,7 +24,7 @@ public class Receiver2 {
     System.out.println(str);
 
     // 키보드 입력을 받아서 클라이언트로 송신한다.
-    System.out.print("입력> ");
+    System.out.print("R입력> ");
     str = keyScan.nextLine();
     out.println(str);
 
