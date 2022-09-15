@@ -19,12 +19,10 @@ public class MariaDBBoardDao implements BoardDao {
   @Override
   public int insert(Board board) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "insert into app_board(title, cont, mno) values(?, ?, ?)")) {
-
+        "insert into app_board(title,cont,mno) values(?,?,?)")) {
       pstmt.setString(1, board.title);
       pstmt.setString(2, board.content);
       pstmt.setInt(3, board.memberNo);
-
       return pstmt.executeUpdate();
     }
   }
@@ -32,7 +30,7 @@ public class MariaDBBoardDao implements BoardDao {
   @Override
   public Board findByNo(int no) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "select bno, title, cont, mno, cdt ,vw_cnt from app_board where bno = " + no);
+        "select bno,title,cont,mno,cdt,vw_cnt from app_board where bno=" + no);
         ResultSet rs = pstmt.executeQuery()) {
 
       if (!rs.next()) {
@@ -54,7 +52,7 @@ public class MariaDBBoardDao implements BoardDao {
   @Override
   public int update(Board board) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "update app_board set title = ?, cont = ? where bno = ?")) {
+        "update app_board set title=?, cont=? where bno=?")) {
 
       pstmt.setString(1, board.title);
       pstmt.setString(2, board.content);
@@ -66,18 +64,17 @@ public class MariaDBBoardDao implements BoardDao {
 
   @Override
   public int delete(int no) throws Exception {
-    try (PreparedStatement pstmt = con.prepareStatement("delete from app_board where bno = ?")) {
+    try (PreparedStatement pstmt = con.prepareStatement("delete from app_board where bno=?")) {
 
       pstmt.setInt(1, no);
       return pstmt.executeUpdate();
     }
   }
 
-  // 너무 구체적으로 정하지는 말아라~ 유연성이 떨어진다~
   @Override
   public List<Board> findAll() throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "select bno, title, mno, cdt, vw_cnt from app_board");
+        "select bno,title,mno,cdt,vw_cnt from app_board");
         ResultSet rs = pstmt.executeQuery()) {
 
       ArrayList<Board> list = new ArrayList<>();

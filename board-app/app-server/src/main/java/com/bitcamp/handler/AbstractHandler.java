@@ -26,9 +26,10 @@ public abstract class AbstractHandler implements Handler {
   // 접근 범위를 protected로 설정한다.
   protected void printMenus(DataOutputStream out) throws Exception {
     try (StringWriter strOut = new StringWriter();
-        PrintWriter tempOut = new PrintWriter(strOut)) {  
+        PrintWriter tempOut = new PrintWriter(strOut)) {
 
       tempOut.println(BreadCrumb.getBreadCrumbOfCurrentThread().toString());
+
       for (int i = 0; i < menus.length; i++) {
         tempOut.printf("  %d: %s\n", i + 1, menus[i]);
       }
@@ -52,9 +53,8 @@ public abstract class AbstractHandler implements Handler {
         PrintWriter tempOut = new PrintWriter(strOut)) {
       tempOut.printf("실행 오류:%s\n", e.getMessage());
       out.writeUTF(strOut.toString());
-
     } catch (Exception e2) {
-      e.printStackTrace();
+      e2.printStackTrace();
     }
   }
 
@@ -64,7 +64,6 @@ public abstract class AbstractHandler implements Handler {
     printMenus(out);
 
     while (true) {
-
       String request = in.readUTF();
       if (request.equals("0")) {
         break;
@@ -74,13 +73,12 @@ public abstract class AbstractHandler implements Handler {
         continue;
       }
 
-      try {
-        // 클라이언트가 선택한 메뉴를 처리한다.
-        int menuNo = Integer.parseInt(request);
 
+      try {
+        int menuNo = Integer.parseInt(request);
         if (menuNo < 1 || menuNo > menus.length) {
           throw new Exception("메뉴 번호가 옳지 않습니다.");
-        } 
+        }
 
         // 메뉴에 진입할 때 breadcrumb 메뉴바에 그 메뉴를 등록한다.
         BreadCrumb.getBreadCrumbOfCurrentThread().put(menus[menuNo - 1]);
@@ -88,15 +86,16 @@ public abstract class AbstractHandler implements Handler {
         // 사용자가 입력한 메뉴 번호에 대해 작업을 수행한다.
         service(menuNo, in, out);
 
-        // 메뉴에서 나올 때 breadcrumb 메뉴바에서 그 메뉴를 제거한다.
-        BreadCrumb.getBreadCrumbOfCurrentThread().pickUp();
-
       } catch (Exception e) {
         error(out, e);
+
+      } finally {
+        // 성공하든 실패하든
+        // 메뉴에서 나올 때 breadcrumb 메뉴바에 그 메뉴를 제거한다.
+        BreadCrumb.getBreadCrumbOfCurrentThread().pickUp();
       }
 
     } // while
-
   }
 
   // 서브 클래스가 반드시 만들어야 할 메서드

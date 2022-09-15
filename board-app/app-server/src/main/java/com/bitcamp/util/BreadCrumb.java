@@ -10,13 +10,13 @@ public class BreadCrumb {
   static ThreadLocal<BreadCrumb> localManager = new ThreadLocal<>();
 
   public static BreadCrumb getBreadCrumbOfCurrentThread() {
-    // 스레드 로컬 관리자를 통해 현재 스레드 보관소에 저장되어 있는
+    // 스레드 로컬 관리자를 통해 현재 스레드 보관소에 저장되어 있는 
     // Breadcrumb 객체를 달라고 요청한다.
     return localManager.get();
   }
 
   public BreadCrumb() {
-    // 스레드 로컬 관리자에게 현재 스레드 전용 보관소에
+    // 스레드 로컬 관리자에게 현재 스레드 전용 보관소에 
     // Breadcrumb 객체를 보관해 달라고 요청한다.
     localManager.set(this);
   }
@@ -40,5 +40,4 @@ public class BreadCrumb {
     }
     return builder.toString();
   }
-
 }

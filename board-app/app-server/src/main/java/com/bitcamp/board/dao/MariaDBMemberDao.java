@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.bitcamp.board.domain.Member;
 
-// MemberDao와 통신을 담당할 대행 객체
-//
 public class MariaDBMemberDao implements MemberDao {
 
   Connection con;
@@ -21,7 +19,7 @@ public class MariaDBMemberDao implements MemberDao {
   @Override
   public int insert(Member member) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "insert into app_member(name, email, pwd) values(?, ?, sha2(?, 256))")) {
+        "insert into app_member(name,email,pwd) values(?,?,sha2(?,256))")) {
 
       pstmt.setString(1, member.name);
       pstmt.setString(2, member.email);
@@ -33,8 +31,9 @@ public class MariaDBMemberDao implements MemberDao {
 
   @Override
   public Member findByNo(int no) throws Exception {
+
     try (PreparedStatement pstmt = con.prepareStatement(
-        "select mno, name, email, cdt from app_member where mno =" + no);
+        "select mno,name,email,cdt from app_member where mno=" + no);
         ResultSet rs = pstmt.executeQuery()) {
 
       if (!rs.next()) {
@@ -46,7 +45,6 @@ public class MariaDBMemberDao implements MemberDao {
       member.name = rs.getString("name");
       member.email = rs.getString("email");
       member.createdDate = rs.getDate("cdt");
-
       return member;
     }
   }
@@ -54,7 +52,7 @@ public class MariaDBMemberDao implements MemberDao {
   @Override
   public int update(Member member) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "update app_member set name = ?, email = ?, pwd = sha2(?, 256) where mno = ?")) {
+        "update app_member set name=?, email=?, pwd=sha2(?,256) where mno=?")) {
 
       pstmt.setString(1, member.name);
       pstmt.setString(2, member.email);
@@ -67,8 +65,8 @@ public class MariaDBMemberDao implements MemberDao {
 
   @Override
   public int delete(int no) throws Exception {
-    try (PreparedStatement pstmt1 = con.prepareStatement("delete from app_board where mno = ?");
-        PreparedStatement pstmt2 = con.prepareStatement("delete from app_member2 where mno = ?")) {
+    try (PreparedStatement pstmt1 = con.prepareStatement("delete from app_board where mno=?");
+        PreparedStatement pstmt2 = con.prepareStatement("delete from app_member where mno=?")) {
 
       // 커넥션 객체를 수동 커밋 상태로 설정한다.
       con.setAutoCommit(false);
@@ -81,7 +79,7 @@ public class MariaDBMemberDao implements MemberDao {
       pstmt2.setInt(1, no);
       int count = pstmt2.executeUpdate();
 
-      // 현재까지 작업한 데이터 변경 결과를 실제 테이블에 적용해달라고 요청한다.
+      // 현재까지 작업한 데이터 변경 결과를 실제 테이블에 적용해 달라고 요청한다.
       con.commit();
 
       return count;
@@ -95,16 +93,15 @@ public class MariaDBMemberDao implements MemberDao {
       throw e;
 
     } finally {
-      // 삭제 작업 후 자동 커밋 상태로 전환한다. 
+      // 삭제 작업 후 자동 커밋 상태로 전환한다.
       con.setAutoCommit(true);
     }
   }
 
-  // 너무 구체적으로 정하지는 말아라~ 유연성이 떨어진다~
   @Override
   public List<Member> findAll() throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
-        "select mno, name, email from app_member");
+        "select mno,name,email from app_member");
         ResultSet rs = pstmt.executeQuery()) {
 
       ArrayList<Member> list = new ArrayList<>();

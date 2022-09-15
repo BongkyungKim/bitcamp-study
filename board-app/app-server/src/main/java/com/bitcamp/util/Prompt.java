@@ -18,7 +18,7 @@ public class Prompt {
 
   public int inputInt() throws Exception {
     String str = in.readUTF();
-    return Integer.parseInt(str);
+    return Integer.parseInt(str); 
   }
 
   public int inputInt(String title) throws Exception {
@@ -36,3 +36,7 @@ public class Prompt {
     return in.readUTF();
   }
 }
+
+
+
+
