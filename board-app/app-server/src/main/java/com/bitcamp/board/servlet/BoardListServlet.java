@@ -5,8 +5,6 @@ package com.bitcamp.board.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bitcamp.board.dao.BoardDao;
-import com.bitcamp.board.dao.MariaDBBoardDao;
 import com.bitcamp.board.domain.Board;
 
 @WebServlet(value="/board/list")
@@ -22,18 +19,11 @@ public class BoardListServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
-  private BoardDao boardDao;
+  BoardDao boardDao;
 
-  public BoardListServlet() throws Exception {
-    // 톰캣 서버를 실행할 때는
-    // WEB-INF/lib/ 폴더에 있는 JAR 파일에 대해 service provider 실행 정책이 적용되지 않기 때문에 
-    // JDBC Driver 클래스가 자동으로 로딩되지 않는다.
-    // 따라서 개발자가 직접 로딩해야 한다.
-    Class.forName("org.mariadb.jdbc.Driver");
-
-    Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3306/studydb","study","1111");
-    boardDao = new MariaDBBoardDao(con);
+  @Override
+  public void init() throws ServletException {
+    boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
   }
 
   @Override
