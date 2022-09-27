@@ -8,7 +8,7 @@
 <title>bitcamp</title>
 </head>
 <body>
-  <h1>게시글 상세 정보(JSP+Servlet+EL)</h1>
+  <h1>게시글 상세 정보(JSP + Servlet + EL)</h1>
 <form action='update'>
 <table border='1'>
   <tr>
