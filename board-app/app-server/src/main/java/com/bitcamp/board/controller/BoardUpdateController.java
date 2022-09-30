@@ -23,14 +23,19 @@ public class BoardUpdateController extends HttpServlet {
   }
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     try {
+      request.setCharacterEncoding("UTF-8");
       Board board = new Board();
       board.setNo(Integer.parseInt(request.getParameter("no")));
       board.setTitle(request.getParameter("title"));
+
       board.setContent(request.getParameter("content"));
+
+      //      System.out.println(boardDao.findByNo(board.getNo()).getWriter());
+      //      System.out.println(boardDao.findByNo(board.getNo()).getWriter().getNo());
 
       Member loginMember = (Member) request.getSession().getAttribute("loginMember");
       if (boardDao.findByNo(board.getNo()).getWriter().getNo() != loginMember.getNo()) {
@@ -41,11 +46,7 @@ public class BoardUpdateController extends HttpServlet {
         throw new Exception("게시글 등록 실패!");
       }
 
-      // Refresh:
-      // 자바코드:
-      response.setHeader("Refresh", "1;url=list"); // 응답 헤더에 refresh
-      response.setContentType("text/html; charset=UTF-8"); // JSP가 출력할 콘텐트의 MIME 타입 설정
-      request.getRequestDispatcher("/board/update.jsp").include(request, response); // JSP를 실행한 후 리턴된다.
+      response.sendRedirect("list");
 
     } catch (Exception e) {
       // 예외가 발생하면 예외를 처리하는 JSP에게 UI 생성을 위임한다.
