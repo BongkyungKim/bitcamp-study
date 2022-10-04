@@ -55,4 +55,6 @@ public class Member {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+
 }

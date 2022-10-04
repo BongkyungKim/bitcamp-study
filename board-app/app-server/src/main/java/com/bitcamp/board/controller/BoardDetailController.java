@@ -11,7 +11,6 @@ import com.bitcamp.board.domain.Board;
 
 @WebServlet("/board/detail")
 public class BoardDetailController extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   BoardDao boardDao;
@@ -35,14 +34,18 @@ public class BoardDetailController extends HttpServlet {
 
       request.setAttribute("board", board);
 
-      // JSP에게 UI 생성을 위임한다.
-      response.setContentType("text/html; charset=UTF-8");
-      request.getRequestDispatcher("/board/detail.jsp").include(request, response); // JSP를 실행한 후 리턴된다.
+      response.setContentType("text/html;charset=UTF-8");
+      request.getRequestDispatcher("/board/detail.jsp").include(request, response);
 
     } catch (Exception e) {
-      // 예외가 발생하면 예외를 처리하는 JSP에게 UI 생성을 위임한다.
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error.jsp").forward(request, response); // JSP를 실행한 후 리턴된다.
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
   }
 }
+
+
+
+
+
+

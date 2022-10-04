@@ -11,7 +11,6 @@ import com.bitcamp.board.domain.Member;
 
 @WebServlet("/member/update")
 public class MemberUpdateController extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   MemberDao memberDao;
@@ -26,6 +25,7 @@ public class MemberUpdateController extends HttpServlet {
       throws ServletException, IOException {
     try {
       request.setCharacterEncoding("UTF-8");
+
       Member member = new Member();
       member.setNo(Integer.parseInt(request.getParameter("no")));
       member.setName(request.getParameter("name"));
@@ -33,14 +33,20 @@ public class MemberUpdateController extends HttpServlet {
       member.setPassword(request.getParameter("password"));
 
       if (memberDao.update(member) == 0) {
-        throw new Exception("회원 등록 실패!");
+        throw new Exception("회원 변경 오류입니다!");
       }
 
       response.sendRedirect("list");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error.jsp").forward(request, response);
+      request.getRequestDispatcher("/error.jsp").forward(request, response); 
     }
   }
 }
+
+
+
+
+
+

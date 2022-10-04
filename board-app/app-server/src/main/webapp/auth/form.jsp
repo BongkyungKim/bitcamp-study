@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=\"UTF-8\">
+<meta charset="UTF-8">
 <title>bitcamp</title>
 </head>
 <body>
@@ -20,10 +20,10 @@
   </tr>
 </table>
 <input type="checkbox" name="saveEmail">이메일 저장<br>
-  <p>
-    <button type='submit'>로그인</button>
-    <a href='../'>취소</a>
-  </p>
+<p>
+  <button type='submit'>로그인</button>
+  <a href='../'>취소</a>
+</p>
 </form>
 
 </body>

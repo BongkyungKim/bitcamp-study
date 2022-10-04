@@ -13,7 +13,6 @@ import com.bitcamp.board.domain.Member;
 
 @WebServlet("/auth/login")
 public class LoginController extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   MemberDao memberDao;
@@ -52,12 +51,18 @@ public class LoginController extends HttpServlet {
 
       request.setAttribute("member", member);
 
-      response.setContentType("text/html; charset=UTF-8");
+      response.setContentType("text/html;charset=UTF-8");
       request.getRequestDispatcher("/auth/loginResult.jsp").include(request, response);
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error.jsp").forward(request, response);
+      request.getRequestDispatcher("/error.jsp").forward(request, response); 
     }
   }
 }
+
+
+
+
+
+

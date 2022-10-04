@@ -13,7 +13,6 @@ import com.bitcamp.board.domain.Board;
 
 @WebServlet("/board/list")
 public class BoardListController extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   BoardDao boardDao;
@@ -33,7 +32,7 @@ public class BoardListController extends HttpServlet {
       req.setAttribute("boards", boards);
 
       // JSP에게 UI 생성을 위임한다.
-      resp.setContentType("text/html; charset=UTF-8"); // JSP가 출력할 콘텐트의 MIME 타입 설정
+      resp.setContentType("text/html;charset=UTF-8"); // JSP가 출력할 콘텐트의 MIME 타입 설정
       RequestDispatcher 요청배달자 = req.getRequestDispatcher("/board/list.jsp");
       요청배달자.include(req, resp); // JSP를 실행한 후 리턴된다.
 
@@ -51,3 +50,9 @@ public class BoardListController extends HttpServlet {
     }
   }
 }
+
+
+
+
+
+

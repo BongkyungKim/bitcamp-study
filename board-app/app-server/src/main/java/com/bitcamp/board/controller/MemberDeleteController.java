@@ -10,7 +10,6 @@ import com.bitcamp.board.dao.MemberDao;
 
 @WebServlet("/member/delete")
 public class MemberDeleteController extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   MemberDao memberDao;
@@ -27,14 +26,20 @@ public class MemberDeleteController extends HttpServlet {
       int no = Integer.parseInt(request.getParameter("no"));
 
       if (memberDao.delete(no) == 0) {
-        throw new Exception("회원 삭제 실패!");
+        throw new Exception("회원 삭제 오류입니다!");
       }
 
       response.sendRedirect("list");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error.jsp").forward(request, response);
+      request.getRequestDispatcher("/error.jsp").forward(request, response); 
     }
   }
 }
+
+
+
+
+
+

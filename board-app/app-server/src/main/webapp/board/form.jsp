@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=\"UTF-8\">
+<meta charset="UTF-8">
 <title>bitcamp</title>
 </head>
 <body>
@@ -22,10 +22,10 @@
     <th>첨부파일</th><td><input name='files' type="file" multiple></td>
   </tr>
 </table>
-  <p>
-    <button type='submit'>등록</button>
-    <a href='list'>목록</a>
-  </p>
+<p>
+  <button type='submit'>등록</button>
+  <a href='list'>목록</a>
+</p>
 </form>
 
 </body>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=\"UTF-8\">
+<meta charset="UTF-8">
 <title>bitcamp</title>
 <meta http-equiv='Refresh' content='1; url=${empty member ? "form.jsp" : "../"}'>
 </head>
