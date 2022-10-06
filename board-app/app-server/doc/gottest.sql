@@ -80,7 +80,7 @@ CREATE TABLE `member` (
   `mainaddr`  VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
   `subaddr`   VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
   `interest`  VARCHAR(20)  NULL     COMMENT '관심사', -- 관심사
-  `out_state` BOOLEAN      NOT NULL COMMENT '탈퇴여부(0:기존 회원/1:탈퇴한 회원)', -- 탈퇴여부(0:기존 회원/1:탈퇴한 회원)
+  `out_state` BOOLEAN      NOT NULL COMMENT '탈퇴여부(0values(1, 'user1@test.com', sha2('1111', 256), 0, '비트캠프', 'bitbit', 95/05/05, '010-1234-5678', '남', 22/10/05, '123', '서울', '501호', '자바', 0,);:기존 회원/1:탈퇴한 회원)', -- 탈퇴여부(0:기존 회원/1:탈퇴한 회원)
   `out_date`  DATE         NULL     COMMENT '탈퇴일', -- 탈퇴일
   `p_img`     VARCHAR(250) NULL     COMMENT '프로필사진', -- 프로필사진
   `intro`     VARCHAR(150) NULL     COMMENT '자기소개' -- 자기소개
