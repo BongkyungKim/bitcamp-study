@@ -4,18 +4,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
 import org.mariadb.jdbc.Statement;
+import org.springframework.stereotype.Repository;
 import com.bitcamp.board.domain.AttachedFile;
 import com.bitcamp.board.domain.Board;
 import com.bitcamp.board.domain.Member;
-import com.bitcamp.sql.DataSource;
 
+@Repository // DAO 역할을 수행하는 객체에 붙이는 애노테이션
 public class MariaDBBoardDao implements BoardDao {
 
   DataSource ds;
 
-  //DAO가 사용할 의존 객체 Connection을 생성자의 파라미터로 받는다.
   public MariaDBBoardDao(DataSource ds) {
+    System.out.println("MariaDBBoardDao() 호출됨!");
     this.ds = ds;
   }
 
@@ -110,7 +112,6 @@ public class MariaDBBoardDao implements BoardDao {
   @Override
   public int delete(int no) throws Exception {
     try (PreparedStatement pstmt = ds.getConnection().prepareStatement("delete from app_board where bno=?")) {
-
       pstmt.setInt(1, no);
       return pstmt.executeUpdate();
     }
@@ -153,6 +154,7 @@ public class MariaDBBoardDao implements BoardDao {
     }
   }
 
+
   @Override
   public int insertFiles(Board board) throws Exception {
     try (PreparedStatement pstmt = ds.getConnection().prepareStatement(
@@ -165,7 +167,6 @@ public class MariaDBBoardDao implements BoardDao {
         pstmt.executeUpdate();
       }
       return attachedFiles.size();
-
     }
   }
 
@@ -208,5 +209,17 @@ public class MariaDBBoardDao implements BoardDao {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
