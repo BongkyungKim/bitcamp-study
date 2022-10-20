@@ -9,9 +9,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
 import com.bitcamp.board.domain.Member;
 
-//@WebFilter("/service/*")
+@Component
 public class LoginCheckFilter implements Filter {
 
   @Override
@@ -43,7 +44,11 @@ public class LoginCheckFilter implements Filter {
 
     // URL 매핑이 "/service/*" 형식으로 되어 있을 때
     // * 경로를 알아내려면 다음의 메서드를 호출해야 한다.
-    String servletPath = httpRequest.getPathInfo();
+
+    System.out.println(httpRequest.getContextPath());
+
+    String servletPath = httpRequest.getServletPath();
+    System.out.println(servletPath);
 
     // 콘텐트를 등록,변경,삭제하는 경우 로그인 여부를 검사한다.
     if (servletPath.toLowerCase().endsWith("add") ||
@@ -52,7 +57,7 @@ public class LoginCheckFilter implements Filter {
 
       Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
       if (loginMember == null) { // 로그인 하지 않았다면
-        httpResponse.sendRedirect(httpRequest.getContextPath() + "/service/auth/form");
+        httpResponse.sendRedirect(httpRequest.getContextPath() + "/auth/form");
         return;
       }
     }
