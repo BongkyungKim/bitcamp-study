@@ -33,7 +33,7 @@ function createScore(name, kor, eng, math) {
 }
 
 var scores = []; //new Array();
-scores[0] = new createScore("홍길동", 100, 100, 100);
+scores[0] = new createScore("홍길동", 100, 100, 100); // new해서 생성된 빈객체의 주소는 위에 this에 있다.
 scores[1] = new createScore("임꺽정", 90, 90, 90);
 scores[2] = new createScore("유관순", 80, 80, 80);
 
@@ -47,7 +47,7 @@ for (var score of scores) {
 }
 
 // 다음과 같이 생성된 객체를 초기화시키는 것이 아니라
-// 객체를 생성해두는 일을 하는 함수는
+// 객체를 생성하는 함수는
 // "팩토리 함수(factory)"라 부른다.
 function createScore2(name, kor, eng, math) {
 	var obj = new Object();

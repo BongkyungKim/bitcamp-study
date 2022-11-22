@@ -16,13 +16,13 @@ console.log(plus(10, 20));
 var ok;
 console.log(ok);
 
-ok = plus;
+ok = plus; // plus의 주소를 넘김
 console.log(ok(100, 200));
 
-var haha = ok;
+var haha = ok; // plus의 주소 -> ok -> haha
 console.log(haha(1000, 2000));
 
-ok = "Hello";
+ok = "Hello"; // ok에는 Hello가 들어감 더이상 plus주소x
 ok(100, 200);
 
 </script>

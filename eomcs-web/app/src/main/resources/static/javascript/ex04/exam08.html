@@ -18,11 +18,11 @@ var obj = {
 	kor: 100,
 	eng: 90,
 	math:80,
-	sum: () => this.kor + this.eng + this.math,
+	sum: () => this.kor + this.eng + this.math, // <-- sum이 소속된 객체를 안 가리키고 window를 가리킴
 	aver: () => this.sum() / 3,
-	test1: function() {console.log(this);},
+	test1: function() {console.log(this);}, // <-- this는 함수가 소속된 객체를 가리킴
 	test2() {console.log(this);},
-	test3: () => console.log(this)
+	test3: () => console.log(this) // <-- arrow function의 this는 window객체를 가리킴
 };
 
 // console.log(obj.sum()); // this 즉 window 객체에 kor, eng, math라는 변수가 없기 때문에

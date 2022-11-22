@@ -34,8 +34,7 @@ tr:hover {
     <tr data-th-each="board : ${boards}">
       <td data-th-text="${board.no}">게시글번호</td>
       <td>
-        <a href='detail?no=1' 
-          data-th-href="@{detail(no=${board.no})}"
+        <a href='detail?no=1' data-th-href="@{detail(no=${board.no})}"
           data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목</a>
       </td>
       <td data-th-text="${board.viewCount}">조회수</td>

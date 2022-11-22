@@ -15,8 +15,8 @@ var obj1 = new Object(); // => HashMap<String,Object> obj1 = new HashMap<>();
 obj1.name = "홍길동"; // => obj1.put("name", "홍길동");
 obj1.age = 20; // => obj1.put("age", 20);
 obj1.working = true; // => obj1.put("working", true);
-obj1.hello = function() {
-  console.log("안녕하세요, " + this.name + "님!");
+obj1.hello = function() { // <-- 익명함수 , hello라는 이름으로 함수를 저장
+  console.log("안녕하세요, " + this.name + "님!"); // this. 함수가 소속된 객체를 가리
 }; // => obj1.put("hello", 함수);
 
 console.log(obj1);
@@ -24,14 +24,14 @@ obj1.hello(); // obj1.get("hello")();
 
 // 자바스크립트 객체 정의 단축 표기법
 // => JavaScript Object Notation(JSON) 데이터 포맷의 근원이다.
-var obj2 = {
-    name:"임꺽정",
+var obj2 = { // var obj2 = {}; 기본 객체를 만들라는 의미 == var obj1 = new Object();
+    name:"임꺽정", // '임꺽정'도 가능
     age:30,
     working:true,
     hello:function() {
       console.log("안녕하세요, " + this.name + "님!")
     },
-    hello2() {
+    hello2() { // hello:function()의 짧은 버전
       console.log("안녕하세요, " + this.name + "님2!")
     }
 };

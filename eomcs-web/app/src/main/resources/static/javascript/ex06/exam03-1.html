@@ -14,7 +14,8 @@
 // 리스너가 일반 함수나 익명 함수일 경우,
 // this가 가리키는 객체가 이벤트가 발생된 객체이다.
 //
-document.getElementById("btn1").addEventListener("click", function(e) {
+// document.querySelector("#btn1").addEventListener("click", function(e) {
+document.getElementById("btn1").addEventListener("click", function(e) { // 여러개가 아니면 onclick이벤트 사용 , (e) e 안적으면 아규먼트스에 무조건 담김 arguments[0]
 	console.log(this);
 
 	// 이벤트가 발생한 객체의 속성 값 알아내기

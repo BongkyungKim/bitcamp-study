@@ -18,16 +18,16 @@
 <script>
 "use strict"
 
-var el = document.querySelectorAll(".btn1");
+var el = document.querySelectorAll(".btn1"); // el : 태그가 들어있는 HTML 컬렉션
 
 // querySelectorAll()의 리턴 값은 NodeList 이다.
 // 태그 객체가 아니다.
 // 따라서 addEventListener() 함수가 없다.
-/*
-el.addEventListener("click", () => {
+
+/* el.addEventListener("click", () => {
     console.log(this);
-});
-*/
+}); */
+
 
 // 또한 onclick 프로퍼티도 없다.
 // 따라서 다음 코드는 의미 없다.
@@ -56,7 +56,13 @@ for (var e of el) {
 	  e.onclick = f1
 }
 
+/* $(".btn1").on('click', () => { // 'click'... 이벤트 이름에 따라 변경
+	console.log(this);
+}); */
 
+/* $(".btn1").click(function() { // 클릭 이벤트 리스너만
+	cosole.log(this);
+}); */
 
 </script>
 </body>

@@ -17,7 +17,7 @@
     values(#{name},#{email},sha2(#{password},256))
   </insert>
 
-  <select id="findByNo" resultMap="memberMap">
+  <select id="findByNo" resultMap="memberMap"> <!-- 상세정보  -->
     select 
       mno,
       name,
@@ -29,7 +29,7 @@
       mno=#{value}
   </select>
   
-  <select id="findAll" resultMap="memberMap">
+  <select id="findAll" resultMap="memberMap"> <!-- 리스트 -->
     select 
       mno,
       name,
@@ -40,7 +40,7 @@
       name
   </select>
 
-  <select id="findByEmailPassword" resultMap="memberMap">
+  <select id="findByEmailPassword" resultMap="memberMap"> <!-- 로그인  -->
     select 
       mno,
       name,

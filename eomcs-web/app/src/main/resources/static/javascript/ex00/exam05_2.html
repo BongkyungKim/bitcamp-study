@@ -20,16 +20,16 @@
 <script>
 var inputNameIndex = 1;
 var btnAddName = document.getElementById("btnAddName");
-var inputNameContainer = document.querySelector("#inputNameContainer");
+var inputNameContainer = document.querySelector("#inputNameContainer"); // querySelector(css셀렉터 문법으로 입력) * 강사님 추천
 var inputNameDiv = document.querySelector(".inputName");
 
-btnAddName.onclick = function() {
+btnAddName.onclick = function() { // add버튼을 눌렀을 때 호출된 함수를 등록한다.
 	inputNameIndex++;
-	var e = inputNameDiv.cloneNode(true);
+	var e = inputNameDiv.cloneNode(true); // 태그 객체를 복제한다. 자식노드 포함
 	e.querySelector(".name").innerHTML = "이름" + inputNameIndex;
 	e.querySelector("input").name = "name" + inputNameIndex;
   e.querySelector("input").value = "";
-	inputNameContainer.appendChild(e);
+	inputNameContainer.appendChild(e); // inputNameContainer의 자식으로 계속 추가
 };
 
 </script>
